@@ -40,5 +40,12 @@ export async function login(request: FastifyRequest, reply: FastifyReply) {
     console.log(tokenData)
     console.log(userData)
 
-    return "success"
+    const jwt = await reply.jwtSign({
+        id: userData.id,
+        email: userData.email,
+        username: userData.username
+    })
+
+    reply.setCookie("user", jwt, { signed: true })
+    reply.redirect("/application/moderator")
 }
