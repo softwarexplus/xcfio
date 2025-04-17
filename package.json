@@ -1,0 +1,26 @@
+{
+    "name": "netlify",
+    "version": "1.0.0",
+    "main": "index.js",
+    "type": "commonjs",
+    "author": "xcfio",
+    "license": "MIT",
+    "scripts": {
+        "dev": "netlify dev",
+        "test": "tsc --noEmit"
+    },
+    "dependencies": {
+        "@fastify/cookie": "^11.0.2",
+        "@fastify/formbody": "^8.0.2",
+        "@fastify/jwt": "^9.1.0",
+        "@netlify/functions": "^3.1.0",
+        "drizzle-orm": "^0.42.0",
+        "fastify": "^5.3.0",
+        "serverless-http": "^3.2.0"
+    },
+    "devDependencies": {
+        "@types/node": "^22.14.1",
+        "discord-api-types": "^0.37.120",
+        "drizzle-kit": "^0.31.0"
+    }
+}
