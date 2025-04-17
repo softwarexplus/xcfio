@@ -4,11 +4,12 @@ import { ApplicationForm } from "../type"
 
 export async function submit_app(request: FastifyRequest, reply: FastifyReply) {
     try {
+        const { id, email, username } = (await request.jwtVerify()) as { id: string; email: string; username: string }
         const form = request.body as ApplicationForm
         form.submittedAt = new Date()
 
         const payload: RESTPostAPIWebhookWithTokenJSONBody = {
-            content: "```json\n" + JSON.stringify(form, null, 4) + "\n```"
+            content: "```json\n" + JSON.stringify({ ...form, id, email, username }, null, 4) + "\n```"
         }
 
         fetch(process.env.WEBHOOK, {
