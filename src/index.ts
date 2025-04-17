@@ -17,7 +17,8 @@ fastify.register(jwt, {
     }
 })
 
-fastify.get("/application/moderator", moderator_app)
+fastify.get("/", (req, reply) => reply.redirect("/application/moderator"))
 fastify.get("/login", login)
 fastify.post("/submit", submit_app)
+fastify.get("/application/moderator", moderator_app)
 

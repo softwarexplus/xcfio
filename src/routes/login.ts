@@ -1,5 +1,7 @@
 import { RESTPostOAuth2AccessTokenResult, APIUser } from "discord-api-types/v10"
 import { FastifyReply, FastifyRequest } from "fastify"
+import { db, user } from "../database"
+import { eq } from "drizzle-orm"
 
 export async function login(request: FastifyRequest, reply: FastifyReply) {
     const code = (request.query as { code?: string }).code
@@ -37,8 +39,28 @@ export async function login(request: FastifyRequest, reply: FastifyReply) {
 
     const userData = (await userRes.json()) as APIUser
 
-    console.log(tokenData)
-    console.log(userData)
+    const existingUser = (await db.select().from(user).where(eq(user.id, userData.id))).shift()
+    if (!existingUser) {
+        // return reply.status(401).send({
+        //     message: "Oh no! You must join the server first!. Please join the server and try again.",
+        //     server: "https://discord.gg/FaCCaFM74Q"
+        // })
+        await db.insert(user).values({
+            id: userData.id,
+            email: userData.email,
+            access_token: tokenData.access_token,
+            refresh_token: tokenData.refresh_token
+        })
+    } else {
+        await db
+            .update(user)
+            .set({
+                email: userData.email,
+                access_token: tokenData.access_token,
+                refresh_token: tokenData.refresh_token
+            })
+            .where(eq(user.id, userData.id))
+    }
 
     const jwt = await reply.jwtSign({
         id: userData.id,
