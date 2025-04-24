@@ -1,4 +1,4 @@
-import { login, moderator_app, submit_app } from "./routes"
+import { base, login, moderator_app, submit_app } from "./routes"
 import formbody from "@fastify/formbody"
 import cookie from "@fastify/cookie"
 import jwt from "@fastify/jwt"
@@ -17,7 +17,7 @@ fastify.register(jwt, {
     }
 })
 
-fastify.get("/", (req, reply) => reply.redirect("/application/moderator"))
+fastify.get("/", base)
 fastify.get("/login", login)
 fastify.post("/submit", submit_app)
 fastify.get("/application/moderator", moderator_app)

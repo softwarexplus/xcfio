@@ -1,13 +1,13 @@
-const css = ``
-
 export const moderator_application = ({ email, id, username }: { email: string; id: string; username: string }) => `
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Discord Server Application</title>
+        <title>Moderator Application - xcfio</title>
         <style>
+            @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&display=swap');
+
             :root {
                 --primary-color: #4e5d94;
                 --secondary-color: #36393f;
@@ -54,7 +54,7 @@ export const moderator_application = ({ email, id, username }: { email: string; 
                 box-sizing: border-box;
                 margin: 0;
                 padding: 0;
-                font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+                font-family: 'Comfortaa', cursive;
                 transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
             }
 
@@ -350,8 +350,8 @@ export const moderator_application = ({ email, id, username }: { email: string; 
                     <span>Dark</span>
                 </button>
             </div>
-            <h1>Discord Server Application</h1>
-            <p>Please fill out this application to join our community</p>
+            <h1>Moderator Application</h1>
+            <p>Please fill out this application to join our staff team</p>
         </header>
 
         <main>
@@ -378,7 +378,7 @@ export const moderator_application = ({ email, id, username }: { email: string; 
 
                     <div class="form-group">
                         <label for="age" class="required-field">Age</label>
-                        <input type="number" id="age" name="age" min="13" class="input-animate" required />
+                        <input type="number" id="age" name="age" min="13" max="99" class="input-animate" required />
                         <p class="form-field-hint">You must be at least 13 years old to join</p>
                     </div>
 
@@ -423,7 +423,7 @@ export const moderator_application = ({ email, id, username }: { email: string; 
             </div>
         </main>
 
-        <footer>&copy; 2025 Discord Server Application Form | Designed with ❤️</footer>
+        <footer>&copy; 2025 Moderator Application Form | Designed with ❤️</footer>
 
         <script>
             // Theme options functionality
